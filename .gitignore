@@ -28,6 +28,12 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
+# Firebase Emulator local data and logs
+.firebase/
+
+# Configuration Files
+/src/app/app.config.ts
+
 # Miscellaneous
 /.angular/cache
 .sass-cache/
