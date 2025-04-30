@@ -17,13 +17,13 @@ export const appConfig: ApplicationConfig = {
 
     provideFirebaseApp(() =>
       initializeApp({
-        apiKey: 'AIzaSyAR9-YKU3HCMOOSL31E9JtflmK-nIpvaVs',
-        authDomain: 'flatfinder-14cd7.firebaseapp.com',
-        projectId: 'flatfinder-14cd7',
-        storageBucket: 'flatfinder-14cd7.firebasestorage.app',
-        messagingSenderId: '508201601608',
-        appId: '1:508201601608:web:b785d53c88e8b95df8667d',
-        measurementId: 'G-WSF6NJQ4ST',
+        apiKey: 'AIzaSyCZGPYMlX3FY547NliwDVwqSHKHv9gm1PE',
+        authDomain: 'rentease-5a03e.firebaseapp.com',
+        projectId: 'rentease-5a03e',
+        storageBucket: 'rentease-5a03e.firebasestorage.app',
+        messagingSenderId: '682429033217',
+        appId: '1:682429033217:web:f5e263c5f3f0e0fa6f0900',
+        measurementId: 'G-JH61JPNSE9',
       })
     ),
 
