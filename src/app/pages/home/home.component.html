@@ -7,11 +7,21 @@
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-semibold">Flats</h1>
     <div class="flex items-center space-x-2">
-      <button mat-flat-button color="primary" (click)="viewNewFlat()">
+      <button
+        class="!bg-red-600 rounded-lg"
+        mat-flat-button
+        color="primary"
+        (click)="viewNewFlat()"
+      >
         <mat-icon>add</mat-icon>
         Add New Flat
       </button>
-      <button mat-flat-button color="primary" [matMenuTriggerFor]="sortMenu">
+      <button
+        class="!bg-none"
+        mat-flat-button
+        color="primary"
+        [matMenuTriggerFor]="sortMenu"
+      >
         <mat-icon>sort</mat-icon>
         Sort by: {{ filterSignal().sortBy | titlecase }}
         <mat-icon>arrow_drop_down</mat-icon>
