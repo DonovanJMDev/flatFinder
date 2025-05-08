@@ -24,6 +24,7 @@ export class AppComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+
   showHeader = signal(true);
 
   user: Signal<UserProfile | null> = toSignal(this.auth.currentUser$, {
@@ -45,9 +46,7 @@ export class AppComponent {
           currentRoute = currentRoute.firstChild;
         }
 
-        const component = currentRoute.component;
-
-        this.showHeader.set(component !== PageNotFoundComponent);
+        this.showHeader.set(currentRoute.component !== PageNotFoundComponent);
       });
   }
 }

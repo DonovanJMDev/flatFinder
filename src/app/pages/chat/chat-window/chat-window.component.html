@@ -1,0 +1,61 @@
+<div class="flex flex-col h-full">
+  <div
+    #scrollContainer
+    class="flex-1 sm:max-h-100dvh overflow-y-auto p-4 space-y-2 bg-white"
+  >
+    @for (m of messages(); track m.id) {
+    <div
+      [class]="
+        'flex w-full  ' +
+        (m.senderUID === currentUserId() ? 'justify-end' : 'justify-start')
+      "
+    >
+      <div
+        class="p-2 rounded shadow-sm min-w-30 max-w-[80%] text-bold"
+        [class.bg-red-600]="m.senderUID === currentUserId()"
+        [class.text-white]="m.senderUID === currentUserId()"
+        [class.bg-gray-200]="m.senderUID !== currentUserId()"
+      >
+        <div
+          [class.text-white]="m.senderUID === currentUserId()"
+          class="text-xs text-gray-800 font-light"
+        >
+          {{ m.senderUID === currentUserId() ? "You" : m.senderName }}
+        </div>
+        <div class="mt-1 break-words max-w-96 font-semibold">
+          {{ m.content }}
+        </div>
+        <div
+          [class.text-white]="m.senderUID === currentUserId()"
+          class="text-xs text-gray-500 mt-1 font-light"
+        >
+          {{ m.createdAt?.toDate() | date : "shortTime" }}
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <p class="text-center mt-10 text-gray-500">No messages yet.</p>
+    }
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="send()"
+    class="p-2 flex space-x-2 bg-gray-300"
+  >
+    <textarea
+      formControlName="content"
+      (keydown)="handleEnter($event)"
+      class="flex-1 rounded focus:!border-none p-2 bg-gray-300"
+      rows="2"
+      placeholder="Type your message…"
+    ></textarea>
+    <button
+      type="submit"
+      class="flex justify-center cursor-pointer items-center px-5 rounded-full text-red-600 hover:bg-gray-400/20 disabled:bg-none disabled:opacity-70 disabled:cursor-not-allowed"
+      [disabled]="form.invalid"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+  </form>
+</div>

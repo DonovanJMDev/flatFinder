@@ -1,8 +1,20 @@
-<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-xl">
+<div class="max-w-lg mx-auto p-6 bg-white md:rounded-lg shadow-xl">
   <h2 class="text-2xl font-semibold mb-1">Create Your Account</h2>
+  <button
+    class="w-10/12 py-1 my-5 mx-auto rounded-lg border border-gray-300 flex items-center justify-center space-x-2 hover:bg-gray-50 cursor-pointer"
+    type="button"
+    (click)="loginWithGoogle()"
+    [disabled]="loading$ | async"
+  >
+    <img
+      src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+      class="w-7"
+    />
+    <label>Log in with Google</label>
+  </button>
   <p class="text-sm mb-6">
     Already have an account?
-    <a routerLink="/login" class="text-red-600 font-bold hover:underline"
+    <a routerLink="/login" class="text-red-600 font-medium hover:underline"
       >Sign in</a
     >
   </p>
@@ -92,7 +104,6 @@
     </mat-form-field>
 
     <button
-      color="primary"
       class="w-25 py-1 rounded-lg bg-red-600 !text-white disabled:opacity-50 disabled:bg-gray-600"
       type="submit"
       [disabled]="form.invalid || (loading$ | async)"

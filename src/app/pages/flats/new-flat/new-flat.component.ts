@@ -9,7 +9,7 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { FlatService, Flat } from '../../../services/flat.service';
 import { AuthService, UserProfile } from '../../../services/auth.service';
@@ -44,6 +45,7 @@ function notInPastValidator(): ValidatorFn {
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
   ],
   templateUrl: './new-flat.component.html',
   styleUrl: './new-flat.component.css',
@@ -53,6 +55,7 @@ export class NewFlatComponent {
   private flatService = inject(FlatService);
   private auth = inject(AuthService);
   private router = inject(Router);
+  private location = inject(Location);
 
   readonly MAX_FILE_SIZE = 1 * 1024 * 1024;
 
@@ -110,7 +113,7 @@ export class NewFlatComponent {
     const user = this.userSignal();
     if (!user) return;
 
-    const payload: Omit<Flat, 'createdAt'> = {
+    const payload: Omit<Flat, 'id' | 'createdAt'> = {
       ownerUID: user.uid,
       city: this.f['city'].value,
       streetName: this.f['streetName'].value,
@@ -125,5 +128,9 @@ export class NewFlatComponent {
 
     await this.flatService.createFlat(payload);
     this.router.navigate(['/my-flats']);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
